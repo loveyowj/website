@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightside Conversion Temperature</title>
+    <link rel="icon" type = "image/x-icon" href = "C:\Users\yowjd\Desktop\thesis\logo_icon.ico">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+    *{
+        margin:0;
+        padding:0;
+        font-family: 'Source Code Pro',monospace;
+    }
+    body{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(#D09CFA, #F3CCFF);
+    }
+    body{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(#D09CFA, #F3CCFF);
+    }
+    .headbar{
+        width: 85%;
+        margin: auto;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .logo{
+        width: 150px;
+        height: 150px;
+    }
+    .headbar ul li{
+        list-style: none;
+        display: inline-block;
+        margin: 0px 15px;
+        position: relative;
+    }
+    .headbar ul li a{
+        text-decoration: none;
+        color: #FFFFD0;
+        text-transform: uppercase;
+    }
+    .headbar ul li::after{
+        content:'';
+        height: 3px;
+        width: 0;
+        background: #A555EC;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        transition: 0.5s;
+    }
+    .headbar ul li:hover:after{
+        width: 100%;
+    }
+    .conversion_box{
+        position: relative;
+        height: 350px;
+        width: 500px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 30px #040303;
+        left: 400px;
+        display: flex;
+        place-items: center;
+        justify-content: center;
+    }
+    h1{
+        position: absolute;
+        top: 100px;
+        text-align: center;
+        color: #6e34a1;
+    }
+    .from{
+        position: absolute;
+        top: 170px;
+        left: 120px;
+    }
+    #select_from{
+        background-color: #A555EC;
+        color: #FFFFD0;
+        cursor: pointer;
+        border-color:#A555EC;
+        border-radius: 12%;
+        padding: 8px 10px;
+    }
+    .to{
+        position: absolute;
+        top: 220px;
+        left: 120px;
+    }
+    #select_to{
+        background-color: #A555EC;
+        color: #FFFFD0;
+        cursor: pointer;
+        border-color: #A555EC;
+        border-radius: 12%;
+        padding: 8px 10px;
+    }
+    .convert_button{
+        position: absolute;
+        bottom: 50px;
+        left: 150px;
+        right: 150px;
+        background-color: #A555EC;
+        color: #FFFFD0;
+        cursor: pointer;
+        border-color: #A555EC;
+        border-radius: 12%;
+        padding: 8px 9px;
+    }
+    .convert_button:hover{
+        background-color: transparent;
+        color: #A555EC;
+    }
+    .menu button{
+        background-color: #A555EC;
+        border-color:#A555EC;
+        border-radius: 12px;
+        margin: auto;
+        padding: 5px 8px;
+        display: inline-block;
+        align-items: center;
+        justify-content: space-between;
+        position:relative;
+        top: -150px;
+    }
+    .menu button a{
+        color: #FFFFD0;
+    }
+    @media(max-width: 768px){
+        .headbar ul li{
+            padding: 0 5px;
+            margin: 0 -2px;
+        }
+        .conversion_box{
+            position: relative;
+            left: 50px;
+            right: 50px;
+        }
+    }
+</style>
+<body>
+    <div class="banner">
+        <div class="headbar">
+            <img src="official_logo.png" class="logo">
+            <ul>
+                <li><a href = "Home.html"> Home </a></li>
+                <li><a href = "ToDo_List.html"> To-Do List </a></li>
+                <li><a href = "Calculator.html"> Calculator </a></li>
+                <li><a href = "Conversion.html"> Conversion </a></li>
+            </ul>
+        </div>
+    <div class="conversion_box">
+        <h1>Temperature</h1>
+        <div class = "menu">
+            <button><a href = "Conversion.html">Length</a></button>
+            <button><a href = "Temperature.html">Temperature</a></button>
+            <button><a href = "Area.html">Area</a></button>
+            <button><a href = "Volume.html">Volume</a></button>
+            <button><a href = "Weight.html">Weight</a></button>
+            <button><a href = "Time.html">Time</a></button>
+        </div>
+        <div class="from">
+            <select id = "select_from" >            
+                <option value = "C">Celsius</option>
+                <option value = "K"> Kelvin </option>
+                <option value = "F"> Fahrenheit</option>
+            </select>
+            <input type = "number" id = "mfrom" placeholder = "Enter Number">
+        </div>
+        <div class="to">
+            <select id = "select_to">            
+                <option value = "C">Celsius</option>
+                <option value = "K"> Kelvin </option>
+                <option value = "F"> Fahrenheit</option>
+            </select>
+		<input type = "number" id = "mto" placeholder = "0">
+        </div>
+        <button onclick="getOption()" class="convert_button">Convert</button>
+    </div>
+</div>
+</body>
+<script>
+    var input = document.getElementById("mfrom");
+    var result = document.getElementById("mto");
+    var measurement1 = document.getElementById ("select_from");
+    var measurement2 = document.getElementById ("select_to");
+    var measurementValue,resultValue;
+    var finalResult = document.getElementsById('mto');
+
+    input.addEventListener("keyup",getOption);
+    measurement1.addEventListener("change",getOption);
+    measurement2.addEventListener("change",getOption);
+    finalResult.addEventListener("change",getOption);
+
+    function getOption(){
+        measurementValue = measurement1.value;
+        resultValue = measurement2.value;
+
+        if (measurementValue === "C" && resultValue === "K"){
+            result.value = Number (input.value)*274.25;
+        }else if(measurementValue === "C" && resultValue === "F"){
+            result.value = Number (input.value)*33.8;
+        }else if(measurementValue === "C" && resultValue === "C"){
+            result.value = input.value;
+        }
+        else if(measurementValue === "K" && resultValue === "C"){
+            result.value = Number (input.value)*-272.15;
+        }else if(measurementValue === "K" && resultValue === "F"){
+            result.value = Number (input.value)*-457.87;
+        }else if(measurementValue === "K" && resultValue === "K"){
+            result.value = input.value;
+        }
+        else if(measurementValue === "F" && resultValue === "C"){
+            result.value = Number (input.value)*-17.222222222;
+        }else if(measurementValue === "F" && resultValue === "K"){
+            result.value = Number (input.value)*255.92777778;
+        }else if(measurementValue === "F" && resultValue === "F"){
+            result.value = input.value;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <title>Brightside To-do List</title>
+    <link rel="icon" type = "image/x-icon" href = "C:\Users\yowjd\Desktop\thesis\logo_icon.ico">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+   *{
+        margin:0;
+        padding:0;
+        font-family: 'Source Code Pro',monospace;
+    }
+    body{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(#D09CFA, #F3CCFF);
+    }
+    .headbar{
+        width: 85%;
+        margin: auto;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+    .logo{
+        width: 150px;
+        height: 150px;
+    }
+    .headbar ul li{
+        list-style: none;
+        display: inline-block;
+        margin: 0px 15px;
+        position: relative;
+    }
+    .headbar ul li a{
+        text-decoration: none;
+        color: #FFFFD0;
+        text-transform: uppercase;
+    }
+    .headbar ul li::after{
+        content:'';
+        height: 3px;
+        width: 0;
+        background: #A555EC;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        transition: 0.5s;
+    }
+    .headbar ul li:hover:after{
+        width: 100%;
+    }
+    .container{
+        width: 95%;
+        margin: auto;
+    }
+    .nav{
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 100%;
+        margin: 25px 0;
+    }
+    .nav h2{
+        font-size: 2rem;
+        color: #FFFFD0;
+    }
+    .user-input{
+        width: 500px;
+        text-align: center;
+    }
+    .user-input input{
+        width: 80%;
+        outline: none;
+        padding: 8px;
+        border: 1px solid lightgray;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        transition: all 0.30s ease-in-out;
+    }
+    .user-input input:focus{
+        box-shadow: 0 0 5px #A555EC;
+        border: 1px solid #A555EC;
+    }
+    .user-input button{
+        cursor: pointer;
+        padding: 8px;
+        width: fit-content;
+        transition: 1s;
+        outline: none;
+        color:#FFFFD0;
+        background-color: #A555EC;
+        border: 1px solid #A555EC;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+    .user-input button:hover{
+        background-color: transparent;
+        color: #A555EC;
+    }
+    .to-do-items{
+        width: 500px;
+        margin: auto;
+    }
+    .item{
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: auto;
+        border-radius: 2px;
+        padding: 16px;
+        color: #A555EC;
+        margin-top: 10px;
+        font-size: 1rem;
+        text-transform: uppercase;
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        transition: all 0.30s ease-in-out;
+    }
+    .item:hover{
+        box-shadow: 0 0 20px #A555EC;
+        border: 1px solid #A555EC;
+    }
+    .item i{
+        cursor: pointer;
+        margin: 0.5px;
+    }
+    @media(max-width: 768px){
+        .headbar ul li{
+            padding: 0 5px;
+            margin: 0 -2px;
+        }
+        .nav{
+            align-items: center;
+            flex-direction: column;
+        }
+        .nav h2{
+            margin: 10px 0;
+        }
+        .user-input{
+            width: 100%;
+        }
+        .to-do-list{
+            width: 100%;
+        }
+    }
+    @media(max-width: 480px){
+        .user-input{
+            width: 74%;
+        }
+    }
+    @media(max-width: 320px){
+        .user-input{
+            width: 60%;
+        }
+    }
+</style>
+<body>
+    <div class="headbar">
+        <img src="official_logo.png" class="logo">
+        <ul>
+            <li><a href = "Home.html"> Home </a></li>
+            <li><a>To-Do List</a></li>
+            <li><a href = "Calculator.html"> Calculator </a></li>
+            <li><a href = "Conversion.html"> Conversion </a></li>
+        </ul>
+    </div>
+    <div class = "container">
+        <div class = "nav">
+            <h2>Today's Tasks</h2>
+            <div class = "user-input">
+                <input id = "input" type = "text">
+                <button onclick = "addItems()">Submit</button>
+            </div>
+        </div>
+    </div>
+    <div class = "container">
+        <div class = "to-do-items"> </div>
+    </div>
+</body>
+<script>
+    const toDoItems = document.getElementsByClassName("to-do-items")[0];
+    const input = document.getElementById("input");
+    const trashIcon = document.getElementById("trash");
+
+    input.addEventListener("keydown", function(event){
+        if(event.key === "Enter")
+        addItems();
+    })
+
+    function addItems(){
+        var divParent = document.createElement("div");
+        var divChild = document.createElement("div");
+        var checkIcon = document.createElement("i");
+        var trashIcon = document.createElement("i");
+
+        divParent.className = "item";
+        divParent.innerHTML = '<div>'+input.value+'</div>';
+
+        checkIcon.className = "fa-solid fa-square-check";
+        checkIcon.style.color = "lightgray";
+        checkIcon.addEventListener("click", function(){
+            checkIcon.style.color = "limegreen";
+        })
+
+        divChild.appendChild(checkIcon);
+
+        trashIcon.className = "fa-solid fa-trash";
+        trashIcon.style.color = "darkgray";
+        trashIcon.addEventListener("click", function(){
+            divParent.remove();
+        })
+
+        divChild.appendChild(trashIcon);
+
+        divParent.appendChild(divChild);
+
+        toDoItems.appendChild(divParent);
+
+        input.value = '';
+    }
+</script>
+</html>

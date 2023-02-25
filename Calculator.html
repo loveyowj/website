@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightside Calculator</title>
+    <link rel="icon" type = "image/x-icon" href = "C:\Users\yowjd\Desktop\thesis\logo_icon.ico">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+     *{
+        margin:0;
+        padding:0;
+        font-family: 'Source Code Pro',monospace;
+    }
+    body{
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(#D09CFA, #F3CCFF);
+    }
+    .headbar{
+        width: 85%;
+        margin: auto;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .logo{
+        width: 150px;
+        height: 150px;
+    }
+    .headbar ul li{
+        list-style: none;
+        display: inline-block;
+        margin: 0px 15px;
+        position: relative;
+    }
+    .headbar ul li a{
+        text-decoration: none;
+        color: #FFFFD0;
+        text-transform: uppercase;
+    }
+    .headbar ul li::after{
+        content:'';
+        height: 3px;
+        width: 0;
+        background: #A555EC;
+        position: absolute;
+        left: 0;
+        bottom: -10px;
+        transition: 0.5s;
+    }
+    .headbar ul li:hover:after{
+        width: 100%;
+    }
+    .calculator{
+        position: relative;
+        height: 420px;
+        width: 350px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 30px #040303;
+        left: 485px;
+        display: flex;
+        place-items: center;
+        justify-content: center;
+    }
+    .display input{
+        text-align: right;
+        flex: 1;
+        font-size: 30px;
+        background: #FFFFD0;
+        margin: 20px 0px;
+        border-radius: 10px;    
+    }
+    #btn{
+        height: 60px;
+        width: 60px;
+        border: 0;
+        border-radius: 30px;
+        margin: 5px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: all 200ms ease;
+        background-color: #A555EC;
+        color: #FFFFD0
+    }
+    #btn:hover{
+        transform: scale(1.15);
+    }
+    .equal{
+        height: 130px;
+        width: 60px;
+        border: 0;
+        border-radius: 30px;
+        margin: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        position: absolute;
+        bottom: 10px;
+        background-color: #D09CFA;
+        color:#FFFFD0
+    }
+    @media(max-width: 768px){
+        .headbar ul li{
+            padding: 0 5px;
+            margin: 0 -2px;
+        }
+        .calculator{
+            position: relative;
+            left: 150px;
+            right: 150px;
+        }
+    }
+</style>
+<body>
+    <div class="headbar">
+        <img src="official_logo.png" class="logo">
+        <ul>
+            <li><a href = "Home.html"> Home </a></li>
+            <li><a href = "ToDo_List.html"> To-Do List </a></li>
+            <li><a href = "Calculator.html"> Calculator </a></li>
+            <li><a href = "Conversion.html"> Conversion </a></li>
+        </ul>
+    </div>
+    <div class="calculator">
+        <form>
+            <div class = "display">
+                <input type="text" name = "display">
+            </div>
+            <div>
+                <input type="button" value="AC" id = "btn" onclick="display.value = '' ">
+                <input type="button" value="DE" id = "btn" onclick="display.value = display.value.toString().slice(0,-1)">
+                <input type="button" value="/" id = "btn" onclick="display.value += '/' ">
+                <input type="button" value="*" id = "btn" onclick="display.value += '*' ">
+            </div>
+            <div>
+                <input type="button" value="7" id = "btn" onclick="display.value += '7' ">
+                <input type="button" value="8" id = "btn" onclick="display.value += '8' ">
+                <input type="button" value="9" id = "btn" onclick="display.value += '9' ">
+                <input type="button" value="-" id = "btn" onclick="display.value += '-' ">
+            </div>
+            <div>
+                <input type="button" value="4" id = "btn" onclick="display.value += '4' ">
+                <input type="button" value="5" id = "btn" onclick="display.value += '5' ">
+                <input type="button" value="6" id = "btn" onclick="display.value += '6' ">
+                <input type="button" value="+" id = "btn" onclick="display.value += '+' ">
+            </div>
+            <div>
+                <input type="button" value="1" id = "btn" onclick="display.value += '1' ">
+                <input type="button" value="2" id = "btn" onclick="display.value += '2' ">
+                <input type="button" value="3" id = "btn" onclick="display.value += '3' ">
+            </div>
+            <div>
+                <input type="button" value="()" id = "btn" onclick="display.value += '()' ">
+                <input type="button" value="0" id = "btn" onclick="display.value += '0' ">
+                <input type="button" value="." id = "btn" onclick="display.value += '.' ">
+                <input type="button" value="=" onclick="display.value = eval(display.value)" class = "equal">
+            </div>
+        </form>
+    </div>
+</body>
+<script>
+
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brightside Home</title>
+    <link rel="icon" type = "image/x-icon" href = "C:\Users\yowjd\Desktop\thesis\logo_icon.ico">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@500&display=swap');
+    *{
+        margin:0;
+        padding:0;
+        font-family: 'Source Code Pro',monospace;
+    }
+    body{
+        width: 100%;
+        height: 105vh;
+        background-image: linear-gradient(#D09CFA, #F3CCFF);
+    }
+    .logo{
+        width: 250px;
+        height: 250px;
+        display: block;
+        margin-top: -25px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .content{
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        text-align: center;
+        color: #FFFFD0;
+    }
+    .content h1{
+        font-size: 70px;
+        margin-top: 80px;
+    }
+    .content p{
+        margin: 20px auto;
+        font-weight: 10px;
+        line-height: 25px;
+    }
+    .getstarted_button{
+        cursor: pointer;
+        padding: 10px;
+        width: fit-content;
+        font-size: 1rem;
+        transition: 0.5s;
+        outline: none;
+        background-color: #A555EC;
+        border: 1px solid #A555EC;
+        color: #FFFFD0;
+        border-radius:5px;
+        margin: 0;
+        position:absolute;
+        bottom: 15%;
+        left: 44%;
+    }
+    .getstarted_button:hover{
+        background-color: transparent;
+        color: #A555EC;
+    }
+    @media(max-width: 768px){
+        .getstarted_button{
+            position: absolute;
+            left: 38%;
+        }
+    }
+</style>
+<body>
+        <img src="official_logo.png" class="logo">
+        <div class="content">
+            <h1>LET'S BE PRODUCTIVE</h1>
+            <p> An easy-access productivity tool for students</p>
+        </div>
+        <a href="ToDo_List.html">
+            <button class="getstarted_button"><span>Get Started</span></button>
+        </a>   
+</body>
+</html>
